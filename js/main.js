@@ -22,7 +22,7 @@ $( document ).ready(function() {
     //      2. Fill the user's first and last name into `div.user-info`.
 
     
-    $('#login-form .btn').on('click', function() {
+    $('#login-form .btn').on('click',function() {
       $('#login-form').hide();
       $('.user-fullname').text (userInfo.firstName + ' ' + userInfo.lastName);
       $('.user-info').show();
@@ -38,18 +38,18 @@ $( document ).ready(function() {
     //      4. Change the text of the "view details" button to read "hide details" so the user
     //          understands they can hide the text again.
 
-    $('.view-details').on('click', function(event) {
+    $('.view-details').on('click',function(event) {
     //Specify where to target the event
     var targetElement = event.target;
     var container = targetElement.parentElement.parentElement;
-    $(container).find('.details').each (function(index, el) {
-      if($(el).is(':visible')) {
-        $(el).fadeOut();
-        targetElement.innerText="View Details";
+    $(container).find('.details').each(function(index,el) {
+      if ($(el).is(':visible')) {
+         $(el).fadeOut("fast");
+         targetElement.innerHTML = "View Details";
       }
       else { 
-        $(el).fadeIn();
-        targetElement.innerText = "Hide Details";
+        $(el).fadeIn("fast");
+        targetElement.innerHTML = "Hide Details";
       }                                
     });                                
   });
@@ -65,24 +65,25 @@ $( document ).ready(function() {
     //      5. Modify the `width` attribute on each progress bar to set the updated percentage.
 
    
-  $('.vote').on ('click', function(event) {
-
-     if($(this).attr('data-vote') === 'great'); {  
-     // Great vote total
-     voteCounts.great = voteCounts.great + 1; }
+   $('.vote').on ('click', function(event) {
+     var targetVote = $(this).attr('data-vote');     
+     if(targetVote === 'great') {  
+         // Great vote total
+         voteCounts.great = voteCounts.great + 1; 
+     }
      else {
-     // Greatest vote total
-     voteCounts.greatest = voteCounts.greatest + 1;
+         // Greatest vote total
+         voteCounts.greatest = voteCounts.greatest + 1;
      }
  
      // Grand sum of all votes
-     voteCounts.total = voteCounts.total + 1;
+     voteCounts.total = voteCounts.great + voteCounts.greatest;
       //Calculates % for the progress bar
-     var greatPercent =  voteCounts.great/voteCounts.total *100;
-     var greatestPercent = voteCounts.greatest/voteCounts.total*100;
+     var greatPercent =  (voteCounts.great/voteCounts.total) *100 + '%';
+     var greatestPercent = (voteCounts.greatest/voteCounts.total) *100 + '%';
      //Changes the progress bar to display each vote
-     $('.great-Progress').css ('width', greatPercent + '%');
-     $('.greatest-Progress').css ('width', greatestPercent + '%');
+     $('.great-progress').css ('width', greatPercent);
+     $('.greatest-progress').css ('width', greatestPercent);
   });
 });
   
