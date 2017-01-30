@@ -15,19 +15,15 @@ $( document ).ready(function() {
     };
   
                  
-    // Place all your Javascript code inside this "document ready" function so
-    // it does not run until the DOM is ready for Javascript manipulation.
 
     // TODO: Create a function to listen for clicks on the "login" button.
     //      1. When a user clicks the "login" button, hide the login
     //          form elements on the page.
     //      2. Fill the user's first and last name into `div.user-info`.
-    //      (NOTE: You do not have to perform any validation on the data as
-    //          a base requirement.)
 
     
-    $('#login-form .btn').on('click', function(event) {
-    $('#login-form').hide(300);
+    $('#login-form .btn').on('click', function() {
+      $('#login-form').hide();
       $('user-fullename').text (userInfo.firstName + ' ' + userInfo.lastName);
       $('user-info').show();
      });
@@ -43,18 +39,17 @@ $( document ).ready(function() {
     //          understands they can hide the text again.
 
     $('view-details').on('click', function(event) {
-    console.log(event);
+    //Specify where to target the event
     var targetElement = event.target;
     var container = targetElement.parentElement.parentElement;
     $(container).find('.details').each (function (index, el) {
       if($(el).is(':visible')) {
         ($el).fadeOut();
-      targetElement.innerText="View Details"
+      targetElement.innerText="View Details";
       }
       else { $(el).fadeIn();
-      targetElement.innerText = "Hide Details" 
-      }
-                                        
+      targetElement.innerText = "Hide Details";
+      }                                
     });                                
   });
   
@@ -71,7 +66,7 @@ $( document ).ready(function() {
    
   $('.vote') .on ('click', function (event) {
 
-     ($(this).attr('data-vote') === 'great'); {
+     if($(this).attr('data-vote') === 'great'); {
        
      // Great vote total
      voteCounts.great = voteCounts.great + 1; }
@@ -81,10 +76,10 @@ $( document ).ready(function() {
     
      // Grand sum of all votes
      voteCounts.total = voteCounts.total + 1;
-      
+      //Calculates % for the progress bar
      var greatPercent =  voteCounts.great/voteCounts.total *100;
      var greatestPercent = voteCounts.greatest/voteCounts.total*100;
-     
+     //Changes the progress bar to display each vote
      $('.great-Progress').css ('width', greatPercent + '%');
      $('.greatest-Progress').css ('width', greatestPercent + '%');
   });
