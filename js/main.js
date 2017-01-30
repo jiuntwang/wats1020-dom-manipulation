@@ -24,8 +24,8 @@ $( document ).ready(function() {
     
     $('#login-form .btn').on('click', function() {
       $('#login-form').hide();
-      $('user-fullename').text (userInfo.firstName + ' ' + userInfo.lastName);
-      $('user-info').show();
+      $('.user-fullname').text (userInfo.firstName + ' ' + userInfo.lastName);
+      $('.user-info').show();
      });
 
     // TODO: Create a function to listen for clicks on all the "View Details"
@@ -38,17 +38,18 @@ $( document ).ready(function() {
     //      4. Change the text of the "view details" button to read "hide details" so the user
     //          understands they can hide the text again.
 
-    $('view-details').on('click', function(event) {
+    $('.view-details').on('click', function(event) {
     //Specify where to target the event
     var targetElement = event.target;
     var container = targetElement.parentElement.parentElement;
-    $(container).find('.details').each (function (index, el) {
+    $(container).find('.details').each (function(index, el) {
       if($(el).is(':visible')) {
-        ($el).fadeOut();
-      targetElement.innerText="View Details";
+        $(el).fadeOut();
+        targetElement.innerText="View Details";
       }
-      else { $(el).fadeIn();
-      targetElement.innerText = "Hide Details";
+      else { 
+        $(el).fadeIn();
+        targetElement.innerText = "Hide Details";
       }                                
     });                                
   });
@@ -64,16 +65,16 @@ $( document ).ready(function() {
     //      5. Modify the `width` attribute on each progress bar to set the updated percentage.
 
    
-  $('.vote') .on ('click', function (event) {
+  $('.vote').on ('click', function(event) {
 
-     if($(this).attr('data-vote') === 'great'); {
-       
+     if($(this).attr('data-vote') === 'great'); {  
      // Great vote total
      voteCounts.great = voteCounts.great + 1; }
-   
+     else {
      // Greatest vote total
-     {voteCounts.greatest = voteCounts.greatest + 1;}
-    
+     voteCounts.greatest = voteCounts.greatest + 1;
+     }
+ 
      // Grand sum of all votes
      voteCounts.total = voteCounts.total + 1;
       //Calculates % for the progress bar
